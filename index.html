@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="cs">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RealizaceBoard</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>RealizaceBoard</h1>
+      <p>Centrální nástěnka realizací pro interní týmy</p>
+    </header>
+
+    <main>
+      <section class="panel" id="auth-panel">
+        <h2>Účty</h2>
+        <form id="register-form" class="stack">
+          <h3>Vytvořit účet</h3>
+          <label>
+            Jméno a příjmení
+            <input type="text" id="register-name" required />
+          </label>
+          <label>
+            E-mail
+            <input type="email" id="register-email" required />
+          </label>
+          <label>
+            Pozice
+            <select id="register-role" required></select>
+          </label>
+          <button type="submit">Registrovat</button>
+        </form>
+
+        <form id="login-form" class="stack">
+          <h3>Přihlásit se</h3>
+          <label>
+            E-mail
+            <select id="login-email" required></select>
+          </label>
+          <button type="submit">Přihlásit</button>
+        </form>
+        <div id="current-user"></div>
+      </section>
+
+      <section class="panel" id="project-panel">
+        <h2>Zakázky / Realizace</h2>
+        <form id="project-form" class="stack">
+          <label>
+            Název zakázky
+            <input type="text" id="project-name" required />
+          </label>
+          <label>
+            Popis zakázky
+            <textarea id="project-description" rows="3" required></textarea>
+          </label>
+          <label>
+            Klient
+            <input type="text" id="project-client" required />
+          </label>
+          <label>
+            Odhadovaná cena (Kč)
+            <input type="number" min="0" id="project-estimated-price" required />
+          </label>
+          <label>
+            Adresa realizace
+            <input type="text" id="project-address" required />
+          </label>
+          <label>
+            Stav zakázky
+            <select id="project-status" required>
+              <option value="Nová">Nová</option>
+              <option value="V přípravě">V přípravě</option>
+              <option value="Realizace">Realizace</option>
+              <option value="Dokončeno">Dokončeno</option>
+            </select>
+          </label>
+          <label>
+            Zapojení pracovníci
+            <select id="project-members" multiple size="6"></select>
+          </label>
+          <button type="submit">Vytvořit zakázku</button>
+        </form>
+      </section>
+
+      <section class="panel" id="task-panel">
+        <h2>Úkoly pro zakázku</h2>
+        <form id="task-form" class="stack">
+          <label>
+            Zakázka
+            <select id="task-project" required></select>
+          </label>
+          <label>
+            Název úkolu
+            <input type="text" id="task-title" required />
+          </label>
+          <label>
+            Popis
+            <textarea id="task-description" rows="2"></textarea>
+          </label>
+          <label>
+            Sloupec nástěnky
+            <select id="task-column" required>
+              <option value="K vyřízení">K vyřízení</option>
+              <option value="Rozpracováno">Rozpracováno</option>
+              <option value="Čeká na klienta">Čeká na klienta</option>
+              <option value="Hotovo">Hotovo</option>
+            </select>
+          </label>
+          <label>
+            Přiřadit pracovníky
+            <select id="task-assignees" multiple size="6"></select>
+          </label>
+          <button type="submit">Přidat úkol</button>
+        </form>
+      </section>
+
+      <section class="panel wide" id="board-panel">
+        <h2>Nástěnka realizací</h2>
+        <div id="project-cards"></div>
+      </section>
+    </main>
+
+    <template id="project-template">
+      <article class="project-card">
+        <header>
+          <h3 class="project-title"></h3>
+          <p class="project-meta"></p>
+        </header>
+        <p class="project-description"></p>
+        <ul class="project-details"></ul>
+        <div class="board-columns"></div>
+      </article>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>
