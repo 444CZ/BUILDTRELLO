@@ -1,0 +1,15 @@
+{
+  "name": "realizaceboard",
+  "version": "1.0.0",
+  "description": "Interní nástěnka realizací ve stylu Trello",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "check": "node --check server.js && node --check public/app.js"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.8.1",
+    "express": "^4.21.2"
+  }
+}

@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="cs">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RealizaceBoard</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div id="app" class="app-shell">
+      <section id="auth-view" class="auth-view">
+        <div class="auth-card">
+          <h1>RealizaceBoard</h1>
+          <p>Přihlášení do firemní nástěnky realizací</p>
+
+          <div class="tabs">
+            <button class="tab active" data-tab="login">Přihlášení</button>
+            <button class="tab" data-tab="register">Registrace</button>
+          </div>
+
+          <form id="login-form" class="form stack">
+            <label>E-mail<input type="email" id="login-email" required /></label>
+            <label>Heslo<input type="password" id="login-password" required /></label>
+            <button type="submit">Přihlásit</button>
+          </form>
+
+          <form id="register-form" class="form stack hidden">
+            <label>Jméno<input type="text" id="register-name" required /></label>
+            <label>E-mail<input type="email" id="register-email" required /></label>
+            <label>Role<select id="register-role" required></select></label>
+            <label>Heslo<input type="password" id="register-password" minlength="8" required /></label>
+            <button type="submit">Vytvořit účet</button>
+          </form>
+          <p id="auth-message" class="message"></p>
+        </div>
+      </section>
+
+      <section id="dashboard-view" class="dashboard hidden">
+        <header class="topbar">
+          <div>
+            <h2>RealizaceBoard</h2>
+            <p id="user-badge"></p>
+          </div>
+          <div class="top-actions">
+            <button id="new-project-btn">+ Nová zakázka</button>
+            <button id="logout-btn" class="secondary">Odhlásit</button>
+          </div>
+        </header>
+
+        <main class="board-layout">
+          <aside class="sidebar">
+            <h3>Tým</h3>
+            <ul id="people-list"></ul>
+          </aside>
+
+          <section class="board-area">
+            <div id="board-columns" class="board-columns"></div>
+          </section>
+        </main>
+      </section>
+    </div>
+
+    <dialog id="project-dialog">
+      <form id="project-form" class="stack" method="dialog">
+        <h3 id="project-dialog-title">Nová zakázka</h3>
+        <input type="hidden" id="project-id" />
+        <label>Název zakázky<input id="project-title" required /></label>
+        <label>Popis<textarea id="project-description" rows="3" required></textarea></label>
+        <label>Klient<input id="project-client" required /></label>
+        <label>Odhadovaná cena (Kč)<input id="project-price" type="number" min="0" required /></label>
+        <label>Adresa<input id="project-address" required /></label>
+        <label>Stav<select id="project-status" required></select></label>
+        <label>Zapojení pracovníci<select id="project-members" multiple size="7"></select></label>
+        <menu>
+          <button type="button" id="cancel-project" class="secondary">Zrušit</button>
+          <button type="submit">Uložit</button>
+        </menu>
+      </form>
+    </dialog>
+
+    <dialog id="task-dialog">
+      <form id="task-form" class="stack" method="dialog">
+        <h3 id="task-dialog-title">Nový úkol</h3>
+        <input type="hidden" id="task-project-id" />
+        <input type="hidden" id="task-id" />
+        <label>Název úkolu<input id="task-title" required /></label>
+        <label>Popis<textarea id="task-description" rows="2"></textarea></label>
+        <label>Stav<select id="task-status" required></select></label>
+        <label>Přiřazený pracovník<select id="task-assignee"></select></label>
+        <menu>
+          <button type="button" id="cancel-task" class="secondary">Zrušit</button>
+          <button type="submit">Uložit</button>
+        </menu>
+      </form>
+    </dialog>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
